@@ -13,10 +13,6 @@ module RockPaperScissors
       @results = {:win => "You win the match.",
                   :loose => "You loose, computer wins.",
                   :tie => "There is a tie."}
-      @counter = {:games => 0,
-                  :won => 0,
-                  :lost => 0,
-                  :ties => 0}
     end
 
     # Getters y setters
@@ -31,21 +27,12 @@ module RockPaperScissors
       @answer = if !@throws.include?(player_throw)
         ""
         elsif player_throw == computer_throw
-          @counter[:ties] +=1
           @answer = self.results[:tie]
         elsif computer_throw == @defeat[player_throw]
-          @counter[:won] +=1
           @answer = self.results[:win]
         else
-          @counter[:lost] +=1
           @answer = self.results[:loose]
         end
-        if !player_throw.nil? and (:reset == player_throw)
-          @counter.each_key {|key, value| @counter[key] = 0}
-        elsif @throws.include?(player_throw)
-          @counter[:games] += 1
-        else
-          @counter[:games] = @counter[:games]
         end
                      
       engine = Haml::Engine.new File.open("views/index.haml").read 
@@ -55,8 +42,7 @@ module RockPaperScissors
           :choose => @choose,
           :throws => @throws,
           :computer_throw => @computer_throw,
-          :player_throw => @player_throw,
-          :counter => @counter)
+          :player_throw => @player_throw)
       res.finish
     end # call
   end   # App

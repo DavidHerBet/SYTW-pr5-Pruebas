@@ -18,14 +18,14 @@
             %li.active
               %a{:href => "/?choice=reset"} Reset
             %li.dropdown
-              %a.dropdown-toggle{:href => "#", "data-toggle" => "dropdown"} Games played: #{counter[:games]} <b class="caret"></b>
+              %a.dropdown-toggle{:href => "#", "data-toggle" => "dropdown"} Games played: 0 <b class="caret"></b>
               %ul.dropdown-menu
                 %li
-                  %a{:href => "#"}Games won: #{counter[:won]}
+                  %a{:href => "#"}Games won: 0}
                 %li
-                  %a{:href => "#"}Games lost: #{counter[:lost]}
+                  %a{:href => "#"}Games lost: 0}
                 %li
-                  %a{:href => "#"}Games tied: #{counter[:ties]}
+                  %a{:href => "#"}Games tied: 0}
     %section.jumbotron
       .container
         %h1 Welcome to Rock, Paper, Scissors with Haml
