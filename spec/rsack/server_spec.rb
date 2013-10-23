@@ -20,28 +20,28 @@ describe Rsack::Server do
 
   context '/?choice=rock' do
     it "Should return a 200 code" do
-      response = server.get('/')
+      response = server.get('/?choice=rock')
       response.status.should == 200
     end
   end
 
   context '/?choice=paper' do
     it "Should return a 200 code" do
-      response = server.get('/')
+      response = server.get('/?choice=paper')
       response.status.should == 200
     end
   end
 
   context '/?choice=scissors' do
     it "Should return a 200 code" do
-      response = server.get('/')
+      response = server.get('/?choice=scissors')
       response.status.should == 200
     end
   end
 
   context '/?choice=reset' do
     it "Should return a 200 code" do
-      response = server.get('/')
+      response = server.get('/?choice=reset')
       response.status.should == 200
     end
   end
