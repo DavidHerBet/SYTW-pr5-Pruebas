@@ -8,6 +8,9 @@ class RPSAppTest < Test::Unit::TestCase
 
   def app
     Rack::Builder.new do
+      use(Rack::Session::Cookie, {:key => 'rack.session',
+                                  :domain => 'example.com',
+                                  :secret => 'some_secret'})
       run RockPaperScissors::App.new
     end.to_app
   end
@@ -17,18 +20,40 @@ class RPSAppTest < Test::Unit::TestCase
     assert last_response.ok?
   end
 
-  def test_paper_choice
+  def test_paper
     get "/?choice=paper"
     assert last_response.ok?
   end
 
-  def test_rock_choice
+  def test_paper_body
+    get "/?choice=paper"
+    assert correct_answer(last_response.body)
+  end
+
+  # Comprueba que la respuesta sea una de las indicadas
+  def correct_answer(answer)
+    return true if (/You win the match/ =~ answer)
+    return true if (/You loose, computer wins/ =~ answer)
+    return true if (/There is a tie/ =~ answer)
+  end
+
+  def test_rock
     get "/?choice=rock"
     assert last_response.ok?
   end
-  
+
+  def test_rock_body
+    get "/?choice=rock"
+    assert correct_answer(last_response.body)
+  end
+
   def test_scissors_choice
     get "/?choice=scissors"
     assert last_response.ok?
+  end
+
+  def test_scissors_body
+    get "/?choice=scissors"
+    assert correct_answer(last_response.body)
   end
 end
