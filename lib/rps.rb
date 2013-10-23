@@ -68,6 +68,14 @@ module RockPaperScissors
        @session[:ties] = value
     end
 
+    # Reinicia los valores de las cookies de partidas
+    def reset
+      self.games = 0
+      self.won = 0
+      self.lost = 0
+      self.ties = 0
+    end
+
     def call(env)
       set_env(env)
       req = Rack::Request.new(env)
@@ -77,20 +85,24 @@ module RockPaperScissors
       @player_throw = req.GET["choice"]
       @player_throw = player_throw.to_sym if !player_throw.nil?
       @answer = if !@throws.include?(player_throw)
-        ""
-        elsif player_throw == computer_throw
-          self.games = self.games + 1
-          self.ties = self.ties + 1
-          self.results[:tie]
-        elsif computer_throw == self.defeat[player_throw]
-          self.games = self.games + 1
-          self.won = self.won + 1
-          self.results[:win]
-        else
-          self.games = self.games + 1
-          self.lost = self.lost + 1
-          self.results[:loose]
-        end
+                  ""
+                elsif player_throw == computer_throw
+                  self.games = self.games + 1
+                  self.ties = self.ties + 1
+                  self.results[:tie]
+                elsif computer_throw == self.defeat[player_throw]
+                  self.games = self.games + 1
+                  self.won = self.won + 1
+                  self.results[:win]
+                else
+                  self.games = self.games + 1
+                  self.lost = self.lost + 1
+                  self.results[:loose]
+                end
+
+      if !player_throw.nil? and (:reset == player_throw)
+        self.reset
+      end
                      
       engine = Haml::Engine.new File.open("views/index.haml").read 
       res.write engine.render({}, 
