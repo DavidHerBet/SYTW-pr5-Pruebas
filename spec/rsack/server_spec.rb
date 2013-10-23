@@ -3,7 +3,12 @@ require 'spec_helper'
 describe Rsack::Server do
 
   def server
-    Rack::MockRequest.new(Rsack::Server.new(RockPaperScissors::App.new))
+    Rack::MockRequest.new(Rsack::Server.new(
+                            Rack::Session::Cookie.new(
+                              RockPaperScissors::App.new,
+                                :key => 'rack.session',
+                                :domain => 'example.com',
+                                :secret => 'some_secret')))
   end
 
   context '/' do
