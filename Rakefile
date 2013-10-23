@@ -9,3 +9,8 @@ desc "Ejecutar los tests unitarios"
 task :test do
   sh "ruby test/test_rps.rb"
 end
+
+desc "Ejecutar los test de TDD con rspec"
+task :rspec do
+  sh "rspec spec/rsack/server_spec.rb"
+end
