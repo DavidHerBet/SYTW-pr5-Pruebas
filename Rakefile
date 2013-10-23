@@ -5,17 +5,7 @@ task :rps do
   sh "rackup"
 end
 
-desc "Ejecutar el cliente con piedra"
-task :rock do
-  sh "curl -v 'http://localhost:9292?choice=rock'"
-end
-
-desc "Ejecutar el cliente con papel"
-task :paper do
-  sh "curl -v 'http://localhost:9292?choice=paper'"
-end
-
-desc "Ejecutar el cliente con tijeras"
-task :scissors do
-  sh "curl -v 'http://localhost:9292?choice=scissors'"
+desc "Ejecutar los test de TDD con rspec"
+task :rspec do
+  sh "rspec spec/rsack/server_spec.rb"
 end
