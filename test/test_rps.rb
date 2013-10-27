@@ -20,9 +20,20 @@ class RPSAppTest < Test::Unit::TestCase
     assert last_response.ok?
   end
 
+  # Comprueba que la raíz no contenga una tabla con el resultado de la tirada
+  def test_index_body
+    get "/"
+    assert !(last_response.body.include? ("<table></table>"))
+  end
+
   def test_title
     get "/"
     assert last_response.body.include? ("<title>RPS with Haml, CSS, Sessions and Testing</title>")
+  end
+
+  def test_styles
+    get "/public/css/estilos.css"
+    assert last_response.ok?
   end
 
   def test_paper
