@@ -20,6 +20,11 @@ class RPSAppTest < Test::Unit::TestCase
     assert last_response.ok?
   end
 
+  def test_title
+    get "/"
+    assert last_response.body.include? ("<title>RPS with Haml, CSS, Sessions and Testing</title>")
+  end
+
   def test_paper
     get "/?choice=paper"
     assert last_response.ok?
