@@ -26,6 +26,16 @@ describe Rsack::Server do
       response = server.get('/?choice=reset')
       response.body.include?('Games played').should be_true
     end
+
+    it "Debería generar una cookie de sesión" do
+      response = server.get('/')
+      response.header['Set-Cookie'].include?('rack.session').should be_true
+    end
+
+    it "El dominio debería ser example.com" do
+      response = server.get('/')
+      response.header['Set-Cookie'].include?('domain=example.com').should be_true
+    end
   end
 
   context '/?choice=rock' do
