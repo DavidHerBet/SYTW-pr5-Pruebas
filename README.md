@@ -55,7 +55,7 @@ Instrucciones
 
 Notas
 -----
-- Esta apliación está realizada en la versión 2.0.0-p247 de ruby, es posible que debas tengas que cambiar la tuya para ejecutar este código o instalarla si no la tienes.
+- Esta apliación está realizada en la versión 2.0.0-p247 de ruby, es posible que tengas que cambiar de versión para ejecutar este código o instalarla si no la tienes.
 
 - Puedes observar las distintas tareas especificadas en el Rakefile:
 
