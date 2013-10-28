@@ -11,6 +11,6 @@ task :test do
 end
 
 desc "Ejecutar los test de TDD con rspec"
-task :rspec do
+task :spec do
   sh "rspec spec/rsack/server_spec.rb"
 end
