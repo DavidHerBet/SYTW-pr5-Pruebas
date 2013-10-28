@@ -35,7 +35,8 @@ Instrucciones
 
 4. Necesitarás editar el fichero de host (/etc/hosts) y hacer que localhost apunte a www.example.com:
 
-        # /etc/hosts solo hace falta incluirlo al lado de localhost
+        # /etc/hosts 
+        # Solo hace falta incluirlo al lado de localhost
         127.0.0.1       localhost       www.example.com
 
 5. Abre el navegador y ve al dominio de example en el puerto 9292 para ver la aplicación:
