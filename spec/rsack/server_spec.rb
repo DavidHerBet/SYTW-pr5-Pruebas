@@ -21,6 +21,11 @@ describe Rsack::Server do
       response = server.get('/')
       response.body.include?('Result').should_not be_true
     end
+
+    it "Debería tener un contador de partidas" do
+      response = server.get('/?choice=reset')
+      response.body.include?('Games played').should be_true
+    end
   end
 
   context '/?choice=rock' do
@@ -78,6 +83,11 @@ describe Rsack::Server do
     it "Debería retornar un código 200" do
       response = server.get('/?choice=reset')
       response.status.should == 200
+    end
+
+    it "El contador de partidas debería estar a cero" do
+      response = server.get('/?choice=reset')
+      response.body.include?('Games played: 0').should be_true
     end
   end
 
