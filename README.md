@@ -20,41 +20,46 @@ La idea es escribir casos de prueba para cada función no trivial o método en e
 
 Instrucciones
 -------------
-- Clona este repositorio para disponer del código:
+1. Clona este repositorio para disponer del código:
 
         $ git clone git@github.com:DavidHerBet/SYTW-pr5-Pruebas.git
 
-- Ten en cuenta la versión de ruby empleada, es posible que debas cambiar la tuya para ejecutar este código o instalarla si no la tienes.
-
-- También es posible que tengas que instalar las gemas correspondientes:
+2. Instala las gemas correspondientes para que todo funcione correctamente:
 
         $ bundle install
 
-- Puedes observar las tareas especificadas en el Rakefile:
-
-        $ rake -T
- 
-- Se ejecuta el programa de forma manual o mediante Rake:
+3. Ejecuta el programa de forma manual o mediante Rake:
 
         $ rackup
         $ rake rps
 
-- Vamos al dominio de example en el puerto 9292:
+4. Necesitarás editar el fichero de host (/etc/hosts) y hacer que localhost apunte a www.example.com:
+
+        # /etc/hosts solo hace falta incluirlo al lado de localhost
+        127.0.0.1       localhost       www.example.com
+
+5. Abre el navegador y ve al dominio de example en el puerto 9292 para ver la aplicación:
 
         $ http://www.example.com:9292/
 
-- Observamos mediante las herramientas del navegador la cookie asociada 'rack.session' y como se incrementan los contadores de partida.
+6. Observa mediante las herramientas del navegador la cookie asociada 'rack.session' y como se incrementan los contadores de partida.
 
-- Para comprobar que funcionan los tests unitarios:
+7. Comprueba que funcionan los tests unitarios:
 
         $ rake test
 
-- Para comprobar que funcionan los test del tdd con rspec
+8. Comprueba que funcionan los test TDD con rspec:
 
         $ rake rspec
 
+Notas
+-----
+- Esta apliación está realizada en la versión 2.0.0-p247 de ruby, es posible que debas tengas que cambiar la tuya para ejecutar este código o instalarla si no la tienes.
+
+- Puedes observar las distintas tareas especificadas en el Rakefile:
+
+        $ rake -T
+
 ---
-
-Universidad de La Laguna  
+Universidad de La Laguna
 Escuela Técnica Superior de Ingeniería Informática
-
