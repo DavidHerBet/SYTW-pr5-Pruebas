@@ -12,42 +12,73 @@ describe Rsack::Server do
   end
 
   context '/' do
-    it "Should return a 200 code" do
+    it "Debería retornar un código 200" do
       response = server.get('/')
       response.status.should == 200
+    end
+
+    it "No debería de tener ningún resultado asociado a una tirada" do
+      response = server.get('/')
+      response.body.include?('Result').should_not be_true
     end
   end
 
   context '/?choice=rock' do
-    it "Should return a 200 code" do
+    it "Debería retornar un código 200" do
       response = server.get('/?choice=rock')
       response.status.should == 200
+    end
+
+    it "Debería mostrar la elección escogida" do
+      response = server.get('/?choice=rock')
+      response.body.include?('Your choice').should be_true
+    end
+
+    it "Debería mostrar el resultado de la jugada" do
+      response = server.get('/?choice=rock')
+      response.body.include?('Result').should be_true
     end
   end
 
   context '/?choice=paper' do
-    it "Should return a 200 code" do
+    it "Debería retornar un código 200" do
       response = server.get('/?choice=paper')
       response.status.should == 200
+    end
+  
+    it "Debería mostrar la elección escogida" do
+      response = server.get('/?choice=paper')
+      response.body.include?('Your choice').should be_true
+    end
+
+    it "Debería mostrar el resultado de la jugada" do
+      response = server.get('/?choice=paper')
+      response.body.include?('Result').should be_true
     end
   end
 
   context '/?choice=scissors' do
-    it "Should return a 200 code" do
+    it "Debería retornar un código 200" do
       response = server.get('/?choice=scissors')
       response.status.should == 200
+    end
+  
+    it "Debería mostrar la elección escogida" do
+      response = server.get('/?choice=scissors')
+      response.body.include?('Your choice').should be_true
+    end
+
+    it "Debería mostrar el resultado de la jugada" do
+      response = server.get('/?choice=scissors')
+      response.body.include?('Result').should be_true
     end
   end
 
   context '/?choice=reset' do
-    it "Should return a 200 code" do
+    it "Debería retornar un código 200" do
       response = server.get('/?choice=reset')
       response.status.should == 200
     end
   end
 
-  #it "Should exist a player throw" do
-  #  puts server
-  #  server.respond_to?("player_throw").should == true
-  #end
 end
